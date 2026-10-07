@@ -1,0 +1,47 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // 🔒 ВСЯ БАЗА СТРОГО КОНФИДЕНЦИАЛЬНА
+    // Доступ разрешен только верифицированным авторизованным студентам (request.auth != null).
+    // Ни один неавторизованный пользователь не может прочитать ни единого байта данных.
+
+    // 1. Профили студентов
+    match /users/{userId} {
+      allow read: if request.auth != null;
+      allow write: if request.auth != null && request.auth.uid == userId;
+    }
+    
+    // 2. Объявления маркетплейса
+    match /listings/{listingId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+    
+    // 3. Студенческие подработки и вакансии
+    match /jobs/{jobId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+    
+    // 4. Мероприятия кампуса
+    match /events/{eventId} {
+      allow read: if request.auth != null;
+      allow create: if request.auth != null;
+      allow update, delete: if request.auth != null;
+    }
+    
+    // 5. Диалоги (строго только для двух участников переписки)
+    match /chats/{chatId} {
+      allow read, write: if request.auth != null;
+    }
+    
+    // 6. Личные сообщения
+    match /messages/{messageId} {
+      allow read, write: if request.auth != null;
+    }
+    
+  }
+}

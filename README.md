@@ -1,36 +1,87 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# 🎓 Campusly Web
 
-## Getting Started
+Веб-версия университетского маркетплейса и студенческого сообщества **Campusly**, перенесенная из оригинального iOS (SwiftUI) приложения.
 
-First, run the development server:
+## 🚀 Стек технологий
 
+- **Next.js 16 (App Router)** + **React 19**
+- **TypeScript**
+- **Tailwind CSS v4** с кастомной темной темой (Dark Navy & Luxury Gold `#D4AF37`)
+- **Lucide Icons** (аналоги SF Symbols из iOS)
+- **Firebase Auth & Cloud Firestore** (подключены к существующему проекту `campusly-a1b44`)
+- **Полная поддержка адаптивности**: мобильный интерфейс в стиле iOS TabBar + десктопный вид
+
+---
+
+## 🌟 Реализованные возможности
+
+### 1. Маркетплейс (Marketplace / Home)
+- Категории: **All, Books, Tech, Clothing, Furniture, Services, Other**
+- Поиск по названию и описанию
+- Цены в тенге (₸)
+- Карточки товаров в точном стиле iOS-приложения
+- Бейдж **SOLD** для проданных товаров
+- Быстрый переход в чат с продавцом по кнопке **Chat**
+- Модальное окно просмотра деталей с информацией о верифицированном студенте
+- Возможности владельца: редактирование (название, цена, описание, категория), переключение статуса Продано/В наличии, удаление
+
+### 2. Студенческие подработки и вакансии (Jobs & Gigs)
+- Категории: **All, Tutoring, Delivery, Design, IT, Marketing, Other**
+- Детали вакансии: ставка (₸), длительность, локация на кампусе
+- Возможность написать автору вакансии в один клик
+- Форма создания новой вакансии
+
+### 3. Мероприятия кампуса (Campus Events)
+- Вкладки: **Upcoming** (Предстоящие) и **Past** (Прошедшие)
+- Дата, время, локация и название студенческой организации
+- Добавление в избранное (❤️ сердечко с сохранением в профиль)
+- Форма анонса нового мероприятия
+
+### 4. Сообщения и Чат реального времени (Messages & Live Chat)
+- Список диалогов с контекстом объявления (`Re: Calculus textbook`)
+- Стиль сообщений в точности как в `Chatview.swift`:
+  - Сообщения пользователя: золотой фон (`#D4AF37`), темный текст
+  - Сообщения собеседника: темно-синий фон (`#1A2D4A`), белый текст
+- Автоскролл к последнему сообщению
+- Отправка по Enter или кнопке со стрелкой
+- Автоматический демо-ответ в тестовом режиме
+
+### 5. Профиль студента (Profile)
+- Аватарка с инициалами и золотым свечением
+- Статистика: количество объявлений, проданных товаров, рейтинг
+- Управление своими объявлениями (**My Listings**)
+- Кнопка выхода из аккаунта (**Sign Out**) с подтверждением
+
+### 6. Авторизация (Auth & Demo)
+- Вход по студенческому email и паролю
+- Регистрация нового студента
+- Кнопка **«Continue as Demo Student»** для мгновенного входа без регистрации
+
+---
+
+## 🛠️ Запуск проекта
+
+1. Перейдите в папку веб-версии:
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+cd campusly-web
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+2. Запустите сервер разработки:
+```bash
+npm run dev
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+3. Откройте в браузере:
+```
+http://localhost:3000
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+---
 
-## Learn More
+## 📦 Сборка для продакшена
 
-To learn more about Next.js, take a look at the following resources:
-
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
-
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+```bash
+npm run build
+npm run start
+```
+Проект готов к деплою на Vercel, Firebase Hosting, Netlify или любой VPS.
